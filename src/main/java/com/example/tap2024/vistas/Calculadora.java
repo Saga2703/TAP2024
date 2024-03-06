@@ -16,13 +16,13 @@ public class Calculadora extends Stage {
     private Button[][] arBotones = new Button[5][4];
     private char[] arEtiquetas = {' ',' ','D','C','7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+'};
     private String operador;
-    private double primerNumero;
+    private double primerNumero,segundoNumero;
     private boolean operacionRealizada = false;
 
 
     public Calculadora(){
         CrearUI();
-        this.setTitle("Mi primer Calculadora :)");
+        this.setTitle("Calculadora");
         this.setScene(escena);
         this.show();
     }
@@ -35,7 +35,7 @@ public class Calculadora extends Stage {
         CrearTeclado();
         vContenedor = new VBox(txtPantalla,gdpTeclado);
         vContenedor.setSpacing(5);
-        escena = new Scene(vContenedor, 200,200);
+        escena = new Scene(vContenedor, 300,200);
         escena.getStylesheets()
                 .add(getClass().getResource("/estilos/calculadora.css").toString());
     }
@@ -62,44 +62,108 @@ public class Calculadora extends Stage {
         if (simbolo == ' ') {
             return;
         }
+
+        String pantallaText = txtPantalla.getText();
+
         if (Character.isDigit(simbolo)) {
             txtPantalla.appendText(simbolo + "");
             operacionRealizada = false;
-        } else if (simbolo == '.' && !txtPantalla.getText().contains(".")) {
-            txtPantalla.appendText(simbolo + "");
-            operacionRealizada = false;
+        } else if (simbolo == '.') {
+            if (!pantallaText.contains(".")) {
+                txtPantalla.appendText(simbolo + "");
+                operacionRealizada = false;
+            } else {
+                txtPantalla.clear();
+                txtPantalla.appendText("Solo se permite un punto");
+            }
+
         } else if (simbolo == 'C') {
             txtPantalla.clear();
             operador = null;
             primerNumero = 0;
+            segundoNumero = 0;
             operacionRealizada = false;
         } else if (simbolo == 'D') {
-            String textoPantalla = txtPantalla.getText();
-            if (!textoPantalla.isEmpty()) {
-                txtPantalla.setText(textoPantalla.substring(0, textoPantalla.length() - 1));
+            if (!pantallaText.isEmpty()) {
+                txtPantalla.setText(pantallaText.substring(0, pantallaText.length() - 1));
             }
         } else if (simbolo == '=') {
             if (operador != null && !operacionRealizada) {
-                String textoPantalla = txtPantalla.getText();
-                if (!textoPantalla.isEmpty()) {
-                    double segundoNumero = Double.parseDouble(textoPantalla);
-                    double resultado = calcular(primerNumero, segundoNumero, operador);
-                    txtPantalla.setText(String.valueOf(resultado));
-                    operador = null;
-                    operacionRealizada = true;
+                if (!pantallaText.isEmpty()) {
+                    if (convertir(pantallaText)) {
+                        segundoNumero = Double.parseDouble(pantallaText);
+                        double resultado = calcular(primerNumero, segundoNumero, operador);
+                        txtPantalla.setText(String.valueOf(resultado));
+                        primerNumero = resultado;
+                        operacionRealizada = true;
+                    } else {
+                        txtPantalla.clear();
+                        txtPantalla.appendText("Error de formato en el segundo número");
+                    }
                 }
             }
         } else {
             if (!operacionRealizada) {
-                if (!txtPantalla.getText().isEmpty()) {
+                if (!pantallaText.isEmpty()) {
+                    if (pantallaText.contains(".")) {
+                        txtPantalla.clear();
+                        txtPantalla.appendText("No se pueden realizar operaciones sin números");
+                        return;
+                    }
+                    if (operador != null) {
+                        if (convertir(pantallaText)) {
+                            segundoNumero = Double.parseDouble(pantallaText);
+                            double resultado = calcular(primerNumero, segundoNumero, operador);
+                            txtPantalla.setText(String.valueOf(resultado));
+                            primerNumero = resultado;
+                        } else {
+                            txtPantalla.clear();
+                            txtPantalla.appendText("Error de formato en el segundo número");
+                            return;
+                        }
+                    } else {
+                        if (convertir(pantallaText)) {
+                            primerNumero = Double.parseDouble(pantallaText);
+                        } else {
+                            txtPantalla.clear();
+                            txtPantalla.appendText("Error de formato en el primer número");
+                            return;
+                        }
+                    }
+
                     operador = String.valueOf(simbolo);
-                    primerNumero = Double.parseDouble(txtPantalla.getText());
-                    txtPantalla.clear();
                     operacionRealizada = true;
+                    txtPantalla.clear();
                 }
             }
         }
     }
+
+
+
+    private boolean convertir(String valor) {
+        if (valor == null || valor.isEmpty()) {
+            return false;
+        }
+
+        int puntos = 0;
+        for (char c : valor.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                if (c == '.') {
+                    puntos++;
+                    if (puntos > 1) {
+                        return false;  // Más de un punto decimal
+                    }
+                } else {
+                    return false;  // Caracter no válido
+                }
+            }
+        }
+
+        return true;
+    }
+
+
 
 
     private double calcular(double num1, double num2, String operador) {
