@@ -63,7 +63,7 @@ public class EmpleadosDAO {
         this.direccion = direccion;
     }
 
-    private void INSERTAR(){
+    public void INSERTAR(){
          String query = "insert into Empleado(empleado,rfc,salario,telefono,direccion)"+
                  "values('"+empleado+"','"+rfc+"','"+salario+"','"+telefono+"','"+direccion+"')";
          try {
@@ -73,7 +73,7 @@ public class EmpleadosDAO {
              e.printStackTrace();
          }
     }
-    private void ACTUALIZAR(){
+    public void ACTUALIZAR(){
         String query = "update Empleado set empleado='"+empleado+"',"+
         "rfc='"+rfc+"',"+"salario="+salario+","+"telefono='"+telefono+"',"+"direccion='"+direccion+"'"+
                 "where id_empleado="+id_empleado;
@@ -86,7 +86,7 @@ public class EmpleadosDAO {
         }
 
     }
-    private void ELIMINAR(){
+    public void ELIMINAR(){
         String query="delete from empleado where id_empleado="+id_empleado;
         try{
             Statement stmt= Conexion.connection.createStatement();
