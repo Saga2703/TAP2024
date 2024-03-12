@@ -24,8 +24,6 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         CrearMenu();
-        //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        //Scene scene = new Scene(fxmlLoader.load(), 320, 240);q
         bdpPanel = new BorderPane();
         bdpPanel.setTop(mnbPrincipal);
         Scene scene = new Scene(bdpPanel);

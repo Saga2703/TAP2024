@@ -6,12 +6,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.kordamp.bootstrapfx.BootstrapFX;
+import org.kordamp.bootstrapfx.scene.layout.Panel;
+
+import java.util.function.BiPredicate;
 
 public class EmpleadoTaqueria extends Stage {
-    private VBox vbxPrincipal;
+    private Panel pnlPrincipal;
+    private BorderPane bpnPrincipal;
     private ToolBar tlbMenu;
     private Scene escena;
     private Button btnAgregarEmpleado;
@@ -35,8 +41,15 @@ public class EmpleadoTaqueria extends Stage {
         tlbMenu =new ToolBar(btnAgregarEmpleado);
 
         CrearTable();
-        vbxPrincipal = new VBox(tlbMenu,tbvEmpleados);
-        escena = new Scene(vbxPrincipal,600,300);
+        bpnPrincipal = new BorderPane();
+        bpnPrincipal.setTop(tlbMenu);
+        bpnPrincipal.setCenter(tbvEmpleados);
+        pnlPrincipal=new Panel("Taqueria");
+        pnlPrincipal.setBody(bpnPrincipal);
+        pnlPrincipal.getStyleClass().add("panel-primary");
+        escena = new Scene(pnlPrincipal,600,300);
+        escena.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());       //(3)
+
     }
 
     private void CrearTable(){
