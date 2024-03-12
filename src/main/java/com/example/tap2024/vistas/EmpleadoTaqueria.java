@@ -35,7 +35,7 @@ public class EmpleadoTaqueria extends Stage {
         imvEmp.setFitWidth(50);
         imvEmp.setFitHeight(50);
         btnAgregarEmpleado =new Button();
-        btnAgregarEmpleado.setOnAction(event -> new EmpleadosForm(tbvEmpleados));
+        btnAgregarEmpleado.setOnAction(event -> new EmpleadosForm(tbvEmpleados,null));
         btnAgregarEmpleado.setPrefSize(50,50);
         btnAgregarEmpleado.setGraphic(imvEmp);
         tlbMenu =new ToolBar(btnAgregarEmpleado);
@@ -75,12 +75,21 @@ public class EmpleadoTaqueria extends Stage {
                 new Callback<TableColumn<EmpleadosDAO, String>, TableCell<EmpleadosDAO, String>>() {
                     @Override
                     public TableCell<EmpleadosDAO, String> call(TableColumn<EmpleadosDAO, String> empleadosDAOStringTableColumn) {
-                        return new ButtonCell();
+                        return new ButtonCell(1);
+                    }
+                }
+        );
+        TableColumn<EmpleadosDAO,String> tbcEliminar = new TableColumn<EmpleadosDAO,String >("ELIMINAR");
+        tbcEliminar.setCellFactory(
+                new Callback<TableColumn<EmpleadosDAO, String>, TableCell<EmpleadosDAO, String>>() {
+                    @Override
+                    public TableCell<EmpleadosDAO, String> call(TableColumn<EmpleadosDAO, String> empleadosDAOStringTableColumn) {
+                        return new ButtonCell(2);
                     }
                 }
         );
 
-        tbvEmpleados.getColumns().addAll(tbcNomEmp,tbcRfc,tbcSalario,tbcTelefono,tbcDireccion,tbcEditar);
+        tbvEmpleados.getColumns().addAll(tbcNomEmp,tbcRfc,tbcSalario,tbcTelefono,tbcDireccion,tbcEditar,tbcEliminar);
         tbvEmpleados.setItems(objEmp.CONSULTAR());
     }
 }

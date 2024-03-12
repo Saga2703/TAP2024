@@ -20,9 +20,9 @@ public class EmpleadosForm extends Stage {
     private Button btnGuardar;
     TableView<EmpleadosDAO> tbvEmpleados;
 
-    public EmpleadosForm(TableView<EmpleadosDAO>tbvEmp){
+    public EmpleadosForm(TableView<EmpleadosDAO>tbvEmp, EmpleadosDAO objEmp){
         tbvEmpleados=tbvEmp;
-        objEmp = new EmpleadosDAO();
+        this.objEmp =(objEmp==null)? new EmpleadosDAO():objEmp;
         CrearUI();
         this.setTitle("Insertar Usuario");
         this.setScene(escena);
@@ -39,11 +39,21 @@ public class EmpleadosForm extends Stage {
             arrCampos[i].setPromptText(arPromts[i]);
             vbxPrincipal.getChildren().add(arrCampos[i]);
         }
+        LlenarForm();
         btnGuardar=new Button("Guardar");
         btnGuardar.setOnAction(event -> GuardarEmpleado());
         vbxPrincipal.getChildren().add(btnGuardar);
         escena=new Scene(vbxPrincipal,300,250);
     }
+
+    private void LlenarForm() {
+        arrCampos[0].setText(objEmp.getEmpleado());
+        arrCampos[1].setText(objEmp.getRfc());
+        arrCampos[2].setText(objEmp.getSalario()+"");
+        arrCampos[3].setText(objEmp.getTelefono());
+        arrCampos[4].setText(objEmp.getDireccion());
+    }
+
     private void GuardarEmpleado(){
         objEmp.setEmpleado(arrCampos[0].getText());
         objEmp.setRfc(arrCampos[1].getText());
