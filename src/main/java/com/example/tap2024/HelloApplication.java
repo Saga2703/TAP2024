@@ -3,10 +3,7 @@ package com.example.tap2024;
 //testing commits
 //hermanas sepsis
 import com.example.tap2024.modelos.Conexion;
-import com.example.tap2024.vistas.Calculadora;
-import com.example.tap2024.vistas.EmpleadoTaqueria;
-import com.example.tap2024.vistas.memorama;
-import com.example.tap2024.vistas.CuadroMagico;
+import com.example.tap2024.vistas.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
@@ -21,7 +18,7 @@ public class HelloApplication extends Application {
 
     private MenuBar mnbPrincipal;
     private Menu menParcial1, menParcial2, menSalir;
-    private MenuItem mitCalculadora, mitSalir, mitMemorama,mitCuadroMagico, mitEmpleado;
+    private MenuItem mitCalculadora, mitSalir, mitMemorama,mitCuadroMagico, mitEmpleado, mitTaqueria;
     private BorderPane bdpPanel;
     @Override
     public void start(Stage stage) throws IOException {
@@ -29,8 +26,7 @@ public class HelloApplication extends Application {
         bdpPanel = new BorderPane();
         bdpPanel.setTop(mnbPrincipal);
         Scene scene = new Scene(bdpPanel);
-        scene.getStylesheets()
-                .add(getClass().getResource("/estilos/main.css").toString());
+        //scene.getStylesheets().add(getClass().getResource("/estilos/main.css").toString());
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
@@ -58,6 +54,9 @@ public class HelloApplication extends Application {
         menParcial1.getItems().addAll(mitCalculadora,mitMemorama,mitCuadroMagico,mitEmpleado);
 
         /* Menu segundo parcial */
+        mitTaqueria = new MenuItem("Taqueria");
+        mitTaqueria.setOnAction(event -> new TaqueriaGUI());
+
         menParcial2 = new Menu("Segundo Parcial");
 
         /* Menu salir */
