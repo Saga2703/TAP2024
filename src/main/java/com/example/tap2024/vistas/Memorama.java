@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class memorama extends Stage {
+public class Memorama extends Stage {
     private Scene escena;
     private VBox vContenedor1, vContenedor2;
     private HBox hContenedor1,hContenedor2, hContenedor3,hContenedor4;
@@ -19,7 +19,7 @@ public class memorama extends Stage {
     private GridPane gdpImagenes;
     private Label lblPares, lbl1,lbl2,lbl3,lbl4,lblTimer;
 
-    public memorama(){
+    public Memorama(){
         CrearUI();
         this.setTitle("Memorama ");
         this.setScene(escena);
@@ -48,7 +48,7 @@ public class memorama extends Stage {
         vContenedor1.setSpacing(10);
         escena = new Scene(vContenedor1, 500,500);
         /*escena.getStylesheets()
-                .add(getClass().getResource("/estilos/memorama.css").toString());*/
+                .add(getClass().getResource("/estilos/Memorama.css").toString());*/
     }
 
     private void RevolverCartas(){
