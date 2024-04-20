@@ -52,9 +52,10 @@ public class TaqueriaGUI extends Stage {
     }
 
     public void CrearMNOrden(){
+        Label tOrden = new Label("Orden");
         CrearMNTiposAlimentos();
         CrearBAlimentos();
-        mnOrden = new VBox(mnTiposAlimentos,mnAlimentos,bAlimentos);
+        mnOrden = new VBox(tOrden,mnTiposAlimentos,mnAlimentos,bAlimentos);
         mnPrincipal.getChildren().add(mnOrden);
     }
 
@@ -97,7 +98,10 @@ public class TaqueriaGUI extends Stage {
     }
 
     public void CrearMNMesas(){
-        mnMesas = new VBox(mesas, bMesas, menuPrivado);
+        Label tMesas = new Label("Mesas");
+        CrearMesas();
+        CrearMenuPrivado();
+        mnMesas = new VBox(tMesas, mesas, menuPrivado);
         mnPrincipal.getChildren().add(mnMesas);
     }
 
@@ -106,10 +110,16 @@ public class TaqueriaGUI extends Stage {
         mesas = new GridPane();
         for(int mesa = 0; mesa < 12; mesa++){
             bMesa[mesa] = new Button((String.valueOf(mesa + 1)));
+            int finalMesa = mesa;
+            bMesa[mesa].setOnAction(event -> {this.mesaActual = finalMesa;});
             mesas.add(bMesa[mesa],mesa%3,mesa/3);
         }
-
     }
 
 
+    public void CrearMenuPrivado(){
+        Button mnPriv = new Button("Admin Tools");
+        mnPriv.setOnAction(event -> new AdminTaqueriaGUI());
+        menuPrivado = new HBox(mnPriv);
+    }
 }
