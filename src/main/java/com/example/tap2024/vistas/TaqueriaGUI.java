@@ -11,9 +11,10 @@ import javafx.stage.Stage;
 public class TaqueriaGUI extends Stage {
 
     private Scene escena;
-    private MenuBar mnbPrincipal;
     private GridPane mesas;
     private HBox bMesas;
+    private HBox menuPrivado;
+    private VBox mnMesas;
     private HBox mnTiposAlimentos;
     private GridPane mnAlimentos;
     private HBox bAlimentos;
@@ -28,15 +29,21 @@ public class TaqueriaGUI extends Stage {
     }
 
     public void CrearUI(){
-
+        mnPrincipal = new HBox();
+        CrearMNOrden();
+        CrearMNMesas();mnPrincipal.getChildren().add(mnOrden);
+        escena = new Scene(mnPrincipal);
     }
 
     public void CrearMNOrden(){
-
+        mnOrden = new VBox(mnTiposAlimentos,mnAlimentos,bAlimentos);
+        mnPrincipal.getChildren().add(mnOrden);
     }
 
     public void CrearMNMesas(){
-
+        mnMesas = new VBox(mesas, bMesas, menuPrivado);
+        mnPrincipal.getChildren().add(mnOrden);
     }
+
 
 }
