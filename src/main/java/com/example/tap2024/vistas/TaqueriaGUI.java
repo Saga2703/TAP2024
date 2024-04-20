@@ -1,6 +1,7 @@
 package com.example.tap2024.vistas;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -12,8 +13,10 @@ public class TaqueriaGUI extends Stage {
     private Scene escena;
     private MenuBar mnbPrincipal;
     private GridPane mesas;
+    private HBox bMesas;
     private HBox mnTiposAlimentos;
     private GridPane mnAlimentos;
+    private HBox bAlimentos;
     private VBox mnOrden;
     private HBox mnPrincipal;
 
@@ -25,6 +28,14 @@ public class TaqueriaGUI extends Stage {
     }
 
     public void CrearUI(){
+
+    }
+
+    public void CrearMNOrden(){
+
+    }
+
+    public void CrearMNMesas(){
 
     }
 
