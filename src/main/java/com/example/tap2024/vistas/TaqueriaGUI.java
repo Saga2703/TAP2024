@@ -13,7 +13,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.HashMap;
+
 public class TaqueriaGUI extends Stage {
+
+    private int mesaActual;
+
     
     private EmpleadosDAO empleados;
     private ProductoDAO productos;
@@ -88,12 +93,22 @@ public class TaqueriaGUI extends Stage {
     }
 
     public void CrearBAlimentos(){
-
+        HashMap<String, Integer> orden = new HashMap<>();
     }
 
     public void CrearMNMesas(){
         mnMesas = new VBox(mesas, bMesas, menuPrivado);
         mnPrincipal.getChildren().add(mnMesas);
+    }
+
+    public void CrearMesas(){
+        Button[] bMesa = new Button[12];
+        mesas = new GridPane();
+        for(int mesa = 0; mesa < 12; mesa++){
+            bMesa[mesa] = new Button((String.valueOf(mesa + 1)));
+            mesas.add(bMesa[mesa],mesa%3,mesa/3);
+        }
+
     }
 
 
