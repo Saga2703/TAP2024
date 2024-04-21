@@ -1,6 +1,5 @@
 package com.example.tap2024;
 
-import com.itextpdf.*;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.layout.Document;
