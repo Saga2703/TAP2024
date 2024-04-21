@@ -29,14 +29,14 @@ public class TaqueriaGUI extends Stage {
 
     //Elementos graficos de la aplicacion
     private Scene escena;
-    private GridPane mesas;//Grid donde se veran las mesas
-    private HBox menuPrivado;//Menu para acceder a las opciones del admin (Base de datos)
-    private VBox mnMesas;
-    private HBox mnTiposAlimentos;//Meni para seleccionar el tipo de alimento
-    private GridPane mnAlimentos;//Menu para seleccionar el alimento
-    private HBox bAlimentos;//Menu para agregar o quitar alimentos
-    private VBox mnOrden;
-    private HBox mnPrincipal;
+    private GridPane mesas = new GridPane();//Grid donde se veran las mesas
+    private HBox menuPrivado = new HBox();//Menu para acceder a las opciones del admin (Base de datos)
+    private VBox mnMesas = new VBox();
+    private HBox mnTiposAlimentos = new HBox();//Meni para seleccionar el tipo de alimento
+    private GridPane mnAlimentos = new GridPane();//Menu para seleccionar el alimento
+    private HBox bAlimentos = new HBox();//Menu para agregar o quitar alimentos
+    private VBox mnOrden = new VBox();
+    private HBox mnPrincipal = new HBox();
 
     public TaqueriaGUI(){
         CrearUI();
