@@ -9,5 +9,6 @@ module com.example.tap2024 {
     requires mysql.connector.j;
     requires mariadb.java.client;
     requires java.sql;
+    requires kernel;
     opens com.example.tap2024.modelos;
 }
