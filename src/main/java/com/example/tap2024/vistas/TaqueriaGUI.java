@@ -21,11 +21,11 @@ public class TaqueriaGUI extends Stage {
     private int mesaActual;//Variable para indicar la mesa en la que se lleva a cabo la orden
 
     //Modelos usados para interactuar con la base de datos
-    private EmpleadosDAO empleados;
-    private ProductoDAO productos;
-    private OrdenDAO ordenes;
-    private Detalle_OrdenDAO detalleOrden;
-    private CategoriaDAO categoria;
+    private EmpleadosDAO empleados = new EmpleadosDAO();
+    private ProductoDAO productos = new ProductoDAO();
+    private OrdenDAO ordenes = new OrdenDAO();
+    private Detalle_OrdenDAO detalleOrden = new Detalle_OrdenDAO();
+    private CategoriaDAO categoria = new CategoriaDAO();
 
     //Elementos graficos de la aplicacion
     private Scene escena;
@@ -97,6 +97,7 @@ public class TaqueriaGUI extends Stage {
 
     public void CrearBAlimentos(){
         HashMap<String, Integer> orden = new HashMap<>();
+        bAlimentos = new HBox(new Label("hola"));
     }
 
     public void CrearMNMesas(){

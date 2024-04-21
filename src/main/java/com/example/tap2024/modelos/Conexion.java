@@ -2,11 +2,11 @@ package com.example.tap2024.modelos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-
+//taqueria admin 1234
 public class Conexion {
-    static private String DB="taqueria";
-    static private String USER="taquero";
-    static private String PWD="1234";
+    static private String DB="takeshis";
+    static private String USER="root";
+    static private String PWD="april2903";
     static public Connection connection;
     public static void  crearConexion(){
         try{

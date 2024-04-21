@@ -60,7 +60,7 @@ public class CategoriaDAO {
     }
     public ObservableList<CategoriaDAO> CONSULTAR(){
         ObservableList<CategoriaDAO> listaCat = FXCollections.observableArrayList();
-        String query ="select * from categoria";
+        String query ="select * from Categoria";
         try{
             CategoriaDAO objCat;
             Statement stmt = Conexion.connection.createStatement();
