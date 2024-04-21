@@ -17,23 +17,24 @@ import java.util.HashMap;
 
 public class TaqueriaGUI extends Stage {
 
-    private int mesaActual;
 
-    
+    private int mesaActual;//Variable para indicar la mesa en la que se lleva a cabo la orden
+
+    //Modelos usados para interactuar con la base de datos
     private EmpleadosDAO empleados;
     private ProductoDAO productos;
     private OrdenDAO ordenes;
     private Detalle_OrdenDAO detalleOrden;
     private CategoriaDAO categoria;
 
+    //Elementos graficos de la aplicacion
     private Scene escena;
-    private GridPane mesas;
-    private HBox bMesas;
-    private HBox menuPrivado;
+    private GridPane mesas;//Grid donde se veran las mesas
+    private HBox menuPrivado;//Menu para acceder a las opciones del admin (Base de datos)
     private VBox mnMesas;
-    private HBox mnTiposAlimentos;
-    private GridPane mnAlimentos;
-    private HBox bAlimentos;
+    private HBox mnTiposAlimentos;//Meni para seleccionar el tipo de alimento
+    private GridPane mnAlimentos;//Menu para seleccionar el alimento
+    private HBox bAlimentos;//Menu para agregar o quitar alimentos
     private VBox mnOrden;
     private HBox mnPrincipal;
 
@@ -51,6 +52,7 @@ public class TaqueriaGUI extends Stage {
         escena = new Scene(mnPrincipal);
     }
 
+    //Menu para las ordenes
     public void CrearMNOrden(){
         Label tOrden = new Label("Orden");
         CrearMNTiposAlimentos();

@@ -10,5 +10,6 @@ module com.example.tap2024 {
     requires mariadb.java.client;
     requires java.sql;
     requires kernel;
+    requires layout;
     opens com.example.tap2024.modelos;
 }
