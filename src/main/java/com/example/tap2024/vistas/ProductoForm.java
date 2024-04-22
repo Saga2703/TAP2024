@@ -69,6 +69,5 @@ public class ProductoForm extends Stage {
         arrCampos[1].clear();
         arrCampos[2].clear();
         arrCampos[3].clear();
-        arrCampos[4].clear();
     }
 }

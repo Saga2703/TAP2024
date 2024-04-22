@@ -63,9 +63,6 @@ public class CategoriaForm extends Stage {
         tbvCategoria.refresh();
 
         arrCampos[0].clear();
-        arrCampos[1].clear();
-        arrCampos[2].clear();
-        arrCampos[3].clear();
-        arrCampos[4].clear();
+
     }
 }
