@@ -1,18 +1,18 @@
 package com.example.tap2024.components;
 
-import com.example.tap2024.modelos.Detalle_OrdenDAO;
+import com.example.tap2024.modelos.CategoriaDAO;
 import com.example.tap2024.modelos.EmpleadosDAO;
-import com.example.tap2024.vistas.DetalleOrdenForm;
+import com.example.tap2024.vistas.CategoriaForm;
 import com.example.tap2024.vistas.EmpleadosForm;
 import javafx.scene.control.*;
 
 import java.util.Optional;
 
-public class ButtonCellD extends TableCell<Detalle_OrdenDAO,String> {
-    Detalle_OrdenDAO objDetO;
+public class ButtonCellC extends TableCell<CategoriaDAO,String> {
+    CategoriaDAO objCat;
     Button btnCelda;
     int opc;
-    public ButtonCellD(int opc){
+    public ButtonCellC(int opc){
         this.opc =opc;
         String txtButton =(opc==1)?"Editar":"Eliminar";
         btnCelda = new Button(txtButton);
@@ -20,22 +20,22 @@ public class ButtonCellD extends TableCell<Detalle_OrdenDAO,String> {
     }
 
     private void AccionBoton(int opc) {
-        TableView<Detalle_OrdenDAO> tbvDet= ButtonCellD.this.getTableView();
-        objDetO = tbvDet.getItems().get(ButtonCellD.this.getIndex());
+        TableView<CategoriaDAO> tbvCategoria= ButtonCellC.this.getTableView();
+        objCat = tbvCategoria.getItems().get(ButtonCellC.this.getIndex());
         if(opc==1){
             //Editar
-            new DetalleOrdenForm(tbvDet,objDetO);
+            new CategoriaForm(tbvCategoria,objCat);
         }else{
             //Eliminar
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Mensaje del sistema");
             alert.setHeaderText("Confirmación de acción");
-            alert.setContentText("¿Deseas borrar el Detalle de la orden: "+objDetO.getId_orden()+"?");
+            alert.setContentText("¿Deseas borrar la categoria: "+objCat.getCategoria()+"?");
             Optional<ButtonType> result =alert.showAndWait();
             if (result.get()==ButtonType.OK){
-                objDetO.ELIMINAR();
-                tbvDet.setItems(objDetO.CONSULTAR());
-                tbvDet.refresh();
+                objCat.ELIMINAR();
+                tbvCategoria.setItems(objCat.CONSULTAR());
+                tbvCategoria.refresh();
             }
         }
     }
