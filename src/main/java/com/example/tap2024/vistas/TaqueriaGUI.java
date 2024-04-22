@@ -1,5 +1,6 @@
 package com.example.tap2024.vistas;
 
+import com.example.tap2024.PDFTools;
 import com.example.tap2024.modelos.*;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -13,12 +14,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TaqueriaGUI extends Stage {
 
 
-    private int mesaActual;//Variable para indicar la mesa en la que se lleva a cabo la orden
+    private int mesaActual = 1;//Variable para indicar la mesa en la que se lleva a cabo la orden
+    private ArrayList<String> orden = new ArrayList<>();
 
     //Modelos usados para interactuar con la base de datos
     private EmpleadosDAO empleados = new EmpleadosDAO();
@@ -28,6 +31,9 @@ public class TaqueriaGUI extends Stage {
     private CategoriaDAO categoria = new CategoriaDAO();
 
     //Elementos graficos de la aplicacion
+    Label tMesas = new Label("Mesa actual: "+mesaActual);
+    private Label estadoOrden;
+    private VBox listaDeAlimOrden;
     private Scene escena;
     private GridPane mesas = new GridPane();//Grid donde se veran las mesas
     private HBox menuPrivado = new HBox();//Menu para acceder a las opciones del admin (Base de datos)
@@ -96,6 +102,8 @@ public class TaqueriaGUI extends Stage {
             imgAlimView.setFitHeight(150);
             imgAlimView.setFitWidth(150);
             bAlim = new Button(alimentos.get(alimento).getProducto());
+            int finalAlimento = alimento;
+            bAlim.setOnAction(event -> agregarAOrden(alimentos, finalAlimento));
             bAlim.setPrefSize(150,50);
             temp = new VBox(imgAlimView, bAlim);
             if(alimentos.get(alimento).getId_categoria() == categoria) {
@@ -104,13 +112,42 @@ public class TaqueriaGUI extends Stage {
         }
     }
 
+    public void agregarAOrden(ObservableList<ProductoDAO> alimentos, int finalAlimento ){
+        listaDeAlimOrden.getChildren().add(new Label(alimentos.get(finalAlimento).getProducto()));
+        orden.add(alimentos.get(finalAlimento).getProducto());
+    }
+
     public void CrearBAlimentos(){
-        HashMap<String, Integer> orden = new HashMap<>();
-        bAlimentos = new HBox(new Label("hola"));
+        estadoOrden = new Label("Orden actual: " + orden.toString());
+        listaDeAlimOrden = new VBox(estadoOrden);
+        Button removeAlim = new Button("Remover");
+        removeAlim.setOnAction(event -> removerDeOrden());
+        Button submitOrder = new Button("Realizar orden");
+        submitOrder.setOnAction(event -> realizarOrden());
+        VBox bAlimOrder = new VBox(removeAlim,submitOrder);
+        bAlimentos = new HBox(listaDeAlimOrden,bAlimOrder);
+    }
+
+    public void removerDeOrden(){
+        if(listaDeAlimOrden.getChildren().size() > 1) {
+            listaDeAlimOrden.getChildren().remove(listaDeAlimOrden.getChildren().size() - 1);
+            orden.remove(orden.size()-1);
+        }
+    }
+
+    public void realizarOrden(){
+        PDFTools pdfticket;
+        String proTemp = "";
+        for(int compra = 0; compra<orden.size(); compra++){
+            if(orden.get(compra).equals(proTemp)){
+
+            }else{
+
+            }
+        }
     }
 
     public void CrearMNMesas(){
-        Label tMesas = new Label("Mesas");
         CrearMesas();
         CrearMenuPrivado();
         mnMesas = new VBox(tMesas, mesas, menuPrivado);
@@ -123,8 +160,8 @@ public class TaqueriaGUI extends Stage {
         for(int mesa = 0; mesa < 12; mesa++){
             bMesa[mesa] = new Button((String.valueOf(mesa + 1)));
             bMesa[mesa].setPrefSize(100,100);
-            int finalMesa = mesa;
-            bMesa[mesa].setOnAction(event -> {this.mesaActual = finalMesa;});
+            int finalMesa = mesa + 1;
+            bMesa[mesa].setOnAction(event -> {this.mesaActual = finalMesa;tMesas.setText("Mesa actual: "+mesaActual);});
             mesas.add(bMesa[mesa],mesa%3,mesa/3);
         }
     }
