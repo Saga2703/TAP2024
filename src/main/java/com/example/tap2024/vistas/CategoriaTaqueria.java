@@ -23,6 +23,7 @@ public class CategoriaTaqueria extends Stage {
     private TableView<CategoriaDAO> tbvCategoria;
     public CategoriaTaqueria(){
         CrearUI();
+        escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
         this.setTitle("Taqueria Los Inges");
         this.setScene(escena);
         this.show();

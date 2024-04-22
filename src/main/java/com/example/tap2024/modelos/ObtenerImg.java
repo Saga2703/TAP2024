@@ -9,7 +9,7 @@ public class ObtenerImg {
     public static Image obtImg(String nomImg){
         Image temp = null;
         try {
-            FileInputStream inputstream = new FileInputStream("/home/angel/Desktop/TAP2024/src/main/resources/imagenes/sheik.jpg");
+            FileInputStream inputstream = new FileInputStream("/home/angel/Desktop/TAP2024/src/main/resources/imagenes/zelda.jpg");
             Image image = new Image(inputstream);
             temp = image;
         }catch(Exception e){
@@ -18,3 +18,4 @@ public class ObtenerImg {
         return temp;
     }
 }
+//src/main/java/com/example/tap2024/modelos/ObtenerImg.java

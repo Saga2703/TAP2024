@@ -22,6 +22,7 @@ public class Detalle_OrdenTaqueria extends Stage {
     private TableView<Detalle_OrdenDAO> tbvDetalleOrden;
     public Detalle_OrdenTaqueria(){
         CrearUI();
+        escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
         this.setTitle("Taqueria Los Inges");
         this.setScene(escena);
         this.show();

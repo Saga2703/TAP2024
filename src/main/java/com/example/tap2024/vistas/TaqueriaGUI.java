@@ -49,7 +49,7 @@ public class TaqueriaGUI extends Stage {
         this.setTitle("Taqueria");
         this.setScene(escena);
         this.setMinWidth(720);
-        this.setMaxHeight(480);
+        this.setMinHeight(480);
         this.show();
     }
 
@@ -138,8 +138,19 @@ public class TaqueriaGUI extends Stage {
     }
 
     public void realizarOrden(){
-        PDFTools pdfticket;
+        /*PDFTools pdfticket;
         ArrayList<Detalle_OrdenDAO> temp = new ArrayList<>();
+        boolean coincide = true;
+        for(int i = 0; i < orden.size(); i++){
+            if(!temp.isEmpty()){
+                for(int j = 0; j <temp.size();j++){
+                    if(orden.get(i) == temp.get(j).getId_orden())
+                }
+            }else{
+
+            }
+        }*/
+        listaDeAlimOrden.getChildren().remove(1,listaDeAlimOrden.getChildren().size()-1);
     }
 
     public void CrearMNMesas(){

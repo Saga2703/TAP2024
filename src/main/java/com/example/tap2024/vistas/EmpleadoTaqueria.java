@@ -21,6 +21,7 @@ public class EmpleadoTaqueria extends Stage {
     private TableView<EmpleadosDAO> tbvEmpleados;
     public EmpleadoTaqueria(){
         CrearUI();
+        escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
         this.setTitle("Taqueria Los Inges");
         this.setScene(escena);
         this.show();

@@ -12,6 +12,7 @@ public class AdminTaqueriaGUI extends Stage {
 
     private Scene escena;
     private Button orden = new Button("Mod. orden");
+    private Button detOrden = new Button("Mod. det. orden");
     private Button producto = new Button("Mod. producto");
     private Button empleado = new Button("Mod. empleado");
     private Button categoria = new Button("Mod. categoria");
@@ -24,6 +25,8 @@ public class AdminTaqueriaGUI extends Stage {
     AdminTaqueriaGUI(){
         CrearUI();
         escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
+        this.setMinHeight(200);
+        this.setMinWidth(200);
         this.setTitle("Administracion");
         this.setScene(escena);
         this.show();
@@ -36,6 +39,7 @@ public class AdminTaqueriaGUI extends Stage {
 
     public void CrearMenuModificaciones(){
         orden.setOnAction(event -> new OrdenTaqueria());
+        detOrden.setOnAction(event -> new Detalle_OrdenTaqueria());
         producto.setOnAction(event -> new ProductoTaqueria());
         empleado.setOnAction(event -> new EmpleadoTaqueria());
         categoria.setOnAction(event -> new CategoriaTaqueria());
