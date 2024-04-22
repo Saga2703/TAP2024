@@ -1,5 +1,6 @@
 package com.example.tap2024.vistas;
 
+import com.example.tap2024.components.ButtonCellD;
 import com.example.tap2024.components.ButtonCellE;
 import com.example.tap2024.modelos.Detalle_OrdenDAO;
 import javafx.scene.Scene;
