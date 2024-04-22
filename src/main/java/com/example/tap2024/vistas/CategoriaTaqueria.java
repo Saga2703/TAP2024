@@ -13,6 +13,7 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
 
 public class CategoriaTaqueria extends Stage {
+
     private Panel pnlPrincipal;
     private BorderPane bpnPrincipal;
     private ToolBar tlbMenu;
@@ -78,4 +79,6 @@ public class CategoriaTaqueria extends Stage {
         tbvCategoria.getColumns().addAll(tbcCategoria,tbcEditar,tbcEliminar);
         tbvCategoria.setItems(objCat.CONSULTAR());
     }
+
+
 }

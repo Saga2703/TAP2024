@@ -1,5 +1,6 @@
 package com.example.tap2024.vistas;
 
+import com.example.tap2024.PDFTools;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;

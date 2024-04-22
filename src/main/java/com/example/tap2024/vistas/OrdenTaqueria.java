@@ -14,6 +14,7 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
 
 public class OrdenTaqueria extends Stage {
+
     private Panel pnlPrincipal;
     private BorderPane bpnPrincipal;
     private ToolBar tlbMenu;
@@ -88,4 +89,6 @@ public class OrdenTaqueria extends Stage {
         tbvOrden.getColumns().addAll(tbcProducto,tbcPrecio,tbcCosto,tbcIdCat,tbcEditar,tbcEliminar);
         tbvOrden.setItems(objPro.CONSULTAR());
     }
+
+
 }

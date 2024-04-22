@@ -89,4 +89,6 @@ public class ProductoTaqueria extends Stage {
         tbvProducto.getColumns().addAll(tbcProducto,tbcPrecio,tbcCosto,tbcIdCat,tbcEditar,tbcEliminar);
         tbvProducto.setItems(objPro.CONSULTAR());
     }
+
+
 }
