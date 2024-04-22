@@ -72,27 +72,35 @@ public class TaqueriaGUI extends Stage {
         for(int tipo = 0; tipo < tipos.size(); tipo++){
             imgTipo = ObtenerImg.obtImg(tipos.get(tipo).getCategoria());
             imgTipoView = new ImageView(imgTipo);
+            imgTipoView.setFitHeight(200);
+            imgTipoView.setFitWidth(200);
             bTipo = new Button(tipos.get(tipo).getCategoria());
+            bTipo.setPrefSize(200,50);
             int tempS = tipos.get(tipo).getId_categoria();
-            bTipo.setOnAction(event -> CrearMNAlimentos(tempS));
+            bTipo.setOnAction(event -> {CrearMNAlimentos(tempS);});
             temp = new VBox(imgTipoView,bTipo);
             mnTiposAlimentos.getChildren().add(temp);
         }
     }
 
     public void CrearMNAlimentos(int categoria){
+        mnAlimentos.getChildren().remove(0,mnAlimentos.getChildren().size());
         Image imgAlim;
         ImageView imgAlimView;
         Button bAlim;
-        VBox temp = new VBox();
+        VBox temp;
         ObservableList<ProductoDAO> alimentos = productos.CONSULTAR();
-        mnAlimentos = new GridPane();
         for(int alimento = 0; alimento < alimentos.size(); alimento++){
             imgAlim = ObtenerImg.obtImg(alimentos.get(alimento).getProducto());
             imgAlimView = new ImageView(imgAlim);
+            imgAlimView.setFitHeight(150);
+            imgAlimView.setFitWidth(150);
             bAlim = new Button(alimentos.get(alimento).getProducto());
+            bAlim.setPrefSize(150,50);
             temp = new VBox(imgAlimView, bAlim);
-            mnAlimentos.add(temp,alimento%5,alimento/5);
+            if(alimentos.get(alimento).getId_categoria() == categoria) {
+                mnAlimentos.add(temp, alimento % 5, alimento / 5);
+            }
         }
     }
 
@@ -114,6 +122,7 @@ public class TaqueriaGUI extends Stage {
         mesas = new GridPane();
         for(int mesa = 0; mesa < 12; mesa++){
             bMesa[mesa] = new Button((String.valueOf(mesa + 1)));
+            bMesa[mesa].setPrefSize(100,100);
             int finalMesa = mesa;
             bMesa[mesa].setOnAction(event -> {this.mesaActual = finalMesa;});
             mesas.add(bMesa[mesa],mesa%3,mesa/3);
