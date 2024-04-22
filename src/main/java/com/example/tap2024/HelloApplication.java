@@ -30,7 +30,7 @@ public class HelloApplication extends Application {
         bdpPanel = new BorderPane();
         bdpPanel.setTop(mnbPrincipal);
         Scene scene = new Scene(bdpPanel);
-        //scene.getStylesheets().add(getClass().getResource("/estilos/main.css").toString());
+        scene.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

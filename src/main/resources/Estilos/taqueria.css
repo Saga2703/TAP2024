@@ -1,0 +1,226 @@
+/*
+*
+*   Author: Antonio Pelusi
+*   Website: https://www.antoniopelusi.com
+*   Source code: https://github.com/antoniopelusi/JavaFX-Dark-Theme
+*
+*/
+
+.root{
+    -fx-background-color: #2D2D30;
+    background-color: #2D2D30;
+}
+
+
+/* Label */
+.label{
+    -fx-text-fill: #AFB1B3;
+}
+
+
+/* Pane */
+.pane-grid{
+	-fx-background-color: #2D2D30;
+    background-color: #2D2D30;
+}
+
+
+/* GridPane */
+.tab-pane-grid{
+    /*
+     * GridPane gridPane = new GridPane();
+     * gridPane.getStyleClass().add("tab-pane-grid");
+     * gridPane.setPadding(new Insets(3,0,0,0));
+    */
+    -fx-background-color: #2D2D30;
+    background-color: #2D2D30;
+    -fx-background-insets: 3 0 0 0;
+}
+
+/* Button */
+.button{
+    -fx-background-radius: 0;
+    -fx-border-insets: 0 0 -1 0;
+    -fx-border-width: 1;
+    border-width: 1;
+    -fx-border-color: #222222;
+    border-color: #222222;
+    -fx-background-color: #1A1A1A;
+    background-color: #1A1A1A;
+    -fx-text-fill: #AFB1B3;
+    -fx-min-height: 25;
+    min-height: 25;
+    -fx-pref-height: 25;
+}
+.button:focused{
+    -fx-border-color: #4e4e4e;
+    border-color: #4e4e4e;
+    -fx-background-color: #1A1A1A;
+    background-color: #1A1A1A;
+}
+.button:hover{
+    -fx-border-color: #222222;
+    border-color: #222222;
+    -fx-background-color: #3E3E40;
+    background-color: #3E3E40;
+    -fx-cursor: HAND;
+    cursor: HAND;
+ }
+.button:pressed{
+    -fx-border-color: #4e4e4e;
+    border-color: #4e4e4e;
+    -fx-background-color: #4e4e4e;
+    background-color: #4e4e4e;
+    -fx-cursor: HAND;
+    cursor: HAND;
+}
+
+
+
+/* Menu */
+.menu-bar {
+    -fx-background-color: #2D2D30;
+    background-color: #2D2D30;
+    -fx-border-width: 0;
+    border-width: 0;
+}
+.menu-bar .menu-button{
+    -fx-background: #4e4e4e;
+    background: #4e4e4e;
+    -fx-text-fill: #AFB1B3;
+    -fx-min-height: 20;
+    min-height: 20;
+    -fx-pref-height: 20;
+    -fx-padding: 0 5 0 5;
+    padding: 0 5 0 5;
+    -fx-cursor: HAND;
+    cursor: HAND;
+}
+.menu-item{
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+    border-width: 0;
+    -fx-text-fill: #AFB1B3;
+    -fx-background-color: #1A1A1A;
+    background-color: #1A1A1A;
+}
+.menu-item:hover {
+    -fx-background-color: #3E3E40;
+    background-color: #3E3E40;
+    -fx-cursor: HAND;
+    cursor: HAND;
+}
+.menu-item:pressed {
+    -fx-background-color: #4e4e4e;
+    background-color: #4e4e4e;
+    -fx-cursor: HAND;
+    cursor: HAND;
+}
+.context-menu {
+    -fx-background-color: #1A1A1A;
+    background-color: #1A1A1A;
+    -fx-border-width: 0;
+    border-width: 0;
+    -fx-padding: 0 0 -1 0;
+    padding: 0 0 -1 0;
+ }
+
+
+
+
+/* TableView */
+.table-view{
+    -fx-border-width: 1;
+    border-width: 1;
+    -fx-border-radius: 0;
+    border-radius: 0;
+    -fx-border-color: #222222;
+    border-color: #222222;
+    -fx-background-radius: 0;
+    -fx-background-color: #1A1A1A;
+    background-color: #1A1A1A;
+    -fx-table-cell-border-color: #222222;
+}
+.table-view:focused{
+    -fx-border-width: 1;
+    border-width: 1;
+    -fx-border-radius: 0;
+    border-radius: 0;
+    -fx-border-color: #4e4e4e;
+    border-color: #4e4e4e;
+    -fx-background-insets: 1;
+    -fx-background-radius: 0;
+    -fx-background-color: #1A1A1A;
+    background-color: #1A1A1A;
+}
+.table-view .column-header-background{
+    -fx-border-width: 0 0 1 0;
+    border-width: 0 0 1 0;
+    -fx-border-color: #222222;
+    border-color: #222222;
+    -fx-background-radius: 0;
+    -fx-background-color: #1A1A1A;
+    background-color: #1A1A1A;
+    -fx-text-fill: #AFB1B3;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+    background-color: transparent;
+    -fx-border-color: #222222;
+    border-color: #222222;
+}
+.table-view .column-resize-line {
+    -fx-background-color: #4e4e4e;
+    background-color: #4e4e4e;
+    -fx-pref-width: 1;
+}
+.table-row-cell{
+    -fx-background-color: #1A1A1A;
+    background-color: #1A1A1A;
+    -fx-text-background-color: #AFB1B3;
+    -fx-margin: 1;
+    margin: 1;
+}
+.table-row-cell:hover {
+    -fx-background-color: #3E3E40;
+    background-color: #3E3E40;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+.table-row-cell:selected {
+    -fx-table-cell-border-color: #222222;
+    -fx-background-color: #3E3E40;
+    background-color: #3E3E40;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+.table-row-cell:pressed {
+    -fx-background-color: #4e4e4e;
+    background-color: #4e4e4e;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+.table-view .column-header .label {
+    -fx-alignment: center-left;
+    -fx-cursor: HAND;
+    cursor: HAND;
+}
+.table-view .filler {
+    -fx-background-color: transparent;
+    background-color: transparent;
+}
+.table-view .column-drag-header{
+    -fx-background-color: #4e4e4e;
+    background-color: #4e4e4e;
+}
+
+
+/* Tooltip */
+.tooltip{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    border-radius: 0;
+    -fx-text-fill: #AFB1B3;
+    -fx-padding: 5;
+    padding: 5;
+}

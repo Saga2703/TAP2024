@@ -50,6 +50,7 @@ public class TaqueriaGUI extends Stage {
         CrearMNOrden();
         CrearMNMesas();
         escena = new Scene(mnPrincipal);
+        escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
     }
 
     //Menu para las ordenes
