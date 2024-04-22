@@ -1,8 +1,7 @@
 package com.example.tap2024.vistas;
 
-import com.example.tap2024.components.ButtonCell;
+import com.example.tap2024.components.ButtonCellE;
 import com.example.tap2024.modelos.CategoriaDAO;
-import com.example.tap2024.modelos.ProductoDAO;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,13 +27,13 @@ public class CategoriaTaqueria extends Stage {
 
     }
     private void CrearUI(){
-        ImageView imvEmp =new ImageView(getClass().getResource("/imagenes/employee.png").toString());
-        imvEmp.setFitWidth(50);
-        imvEmp.setFitHeight(50);
+        ImageView imvCat =new ImageView(getClass().getResource("/imagenes/employee.png").toString());
+        imvCat.setFitWidth(50);
+        imvCat.setFitHeight(50);
         btnAgregarCategoria =new Button();
         btnAgregarCategoria.setOnAction(event -> new CategoriaForm(tbvCategoria,null));
         btnAgregarCategoria.setPrefSize(50,50);
-        btnAgregarCategoria.setGraphic(imvEmp);
+        btnAgregarCategoria.setGraphic(imvCat);
         tlbMenu =new ToolBar(btnAgregarCategoria);
 
         CrearTable();
@@ -62,7 +61,7 @@ public class CategoriaTaqueria extends Stage {
                 new Callback<TableColumn<CategoriaDAO, String>, TableCell<CategoriaDAO, String>>() {
                     @Override
                     public TableCell<CategoriaDAO, String> call(TableColumn<CategoriaDAO, String> productoDAOStringTableColumn) {
-                        return new ButtonCell(1);
+                        return new ButtonCellE(1);
                     }
                 }
         );
@@ -71,7 +70,7 @@ public class CategoriaTaqueria extends Stage {
                 new Callback<TableColumn<CategoriaDAO, String>, TableCell<CategoriaDAO, String>>() {
                     @Override
                     public TableCell<CategoriaDAO, String> call(TableColumn<CategoriaDAO, String> productoDAOStringTableColumn) {
-                        return new ButtonCell(2);
+                        return new ButtonCellE(2);
                     }
                 }
         );

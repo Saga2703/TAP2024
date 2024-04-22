@@ -1,6 +1,6 @@
 package com.example.tap2024.vistas;
 
-import com.example.tap2024.components.ButtonCell;
+import com.example.tap2024.components.ButtonCellE;
 import com.example.tap2024.modelos.OrdenDAO;
 import com.example.tap2024.modelos.ProductoDAO;
 import javafx.scene.Scene;
@@ -71,7 +71,7 @@ public class OrdenTaqueria extends Stage {
                 new Callback<TableColumn<ProductoDAO, String>, TableCell<ProductoDAO, String>>() {
                     @Override
                     public TableCell<ProductoDAO, String> call(TableColumn<ProductoDAO, String> productoDAOStringTableColumn) {
-                        return new ButtonCell(1);
+                        return new ButtonCellE(1);
                     }
                 }
         );
@@ -80,7 +80,7 @@ public class OrdenTaqueria extends Stage {
                 new Callback<TableColumn<ProductoDAO, String>, TableCell<ProductoDAO, String>>() {
                     @Override
                     public TableCell<ProductoDAO, String> call(TableColumn<ProductoDAO, String> productoDAOStringTableColumn) {
-                        return new ButtonCell(2);
+                        return new ButtonCellE(2);
                     }
                 }
         );

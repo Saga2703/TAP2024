@@ -1,19 +1,16 @@
 package com.example.tap2024.vistas;
 
-import com.example.tap2024.components.ButtonCell;
+import com.example.tap2024.components.ButtonCellE;
 import com.example.tap2024.modelos.EmpleadosDAO;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.kordamp.bootstrapfx.BootstrapFX;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
-
-import java.util.function.BiPredicate;
 
 public class EmpleadoTaqueria extends Stage {
     private Panel pnlPrincipal;
@@ -75,7 +72,7 @@ public class EmpleadoTaqueria extends Stage {
                 new Callback<TableColumn<EmpleadosDAO, String>, TableCell<EmpleadosDAO, String>>() {
                     @Override
                     public TableCell<EmpleadosDAO, String> call(TableColumn<EmpleadosDAO, String> empleadosDAOStringTableColumn) {
-                        return new ButtonCell(1);
+                        return new ButtonCellE(1);
                     }
                 }
         );
@@ -84,7 +81,7 @@ public class EmpleadoTaqueria extends Stage {
                 new Callback<TableColumn<EmpleadosDAO, String>, TableCell<EmpleadosDAO, String>>() {
                     @Override
                     public TableCell<EmpleadosDAO, String> call(TableColumn<EmpleadosDAO, String> empleadosDAOStringTableColumn) {
-                        return new ButtonCell(2);
+                        return new ButtonCellE(2);
                     }
                 }
         );

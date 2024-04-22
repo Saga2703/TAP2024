@@ -1,6 +1,5 @@
 package com.example.tap2024.vistas;
 
-import com.example.tap2024.modelos.EmpleadosDAO;
 import com.example.tap2024.modelos.ProductoDAO;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
