@@ -1,43 +1,20 @@
-/*
-*
-*   Author: Antonio Pelusi
-*   Website: https://www.antoniopelusi.com
-*   Source code: https://github.com/antoniopelusi/JavaFX-Dark-Theme
-*
-*/
-
 .root{
     -fx-background-color: #2D2D30;
     background-color: #2D2D30;
 }
 
 
-/* Label */
 .label{
     -fx-text-fill: #AFB1B3;
 }
 
 
-/* Pane */
 .pane-grid{
 	-fx-background-color: #2D2D30;
     background-color: #2D2D30;
 }
 
 
-/* GridPane */
-.tab-pane-grid{
-    /*
-     * GridPane gridPane = new GridPane();
-     * gridPane.getStyleClass().add("tab-pane-grid");
-     * gridPane.setPadding(new Insets(3,0,0,0));
-    */
-    -fx-background-color: #2D2D30;
-    background-color: #2D2D30;
-    -fx-background-insets: 3 0 0 0;
-}
-
-/* Button */
 .button{
     -fx-background-radius: 0;
     -fx-border-insets: 0 0 -1 0;
@@ -77,7 +54,6 @@
 
 
 
-/* Menu */
 .menu-bar {
     -fx-background-color: #2D2D30;
     background-color: #2D2D30;
@@ -128,7 +104,6 @@
 
 
 
-/* TableView */
 .table-view{
     -fx-border-width: 1;
     border-width: 1;
@@ -212,15 +187,4 @@
 .table-view .column-drag-header{
     -fx-background-color: #4e4e4e;
     background-color: #4e4e4e;
-}
-
-
-/* Tooltip */
-.tooltip{
-    -fx-background-radius: 0;
-    -fx-border-radius: 0;
-    border-radius: 0;
-    -fx-text-fill: #AFB1B3;
-    -fx-padding: 5;
-    padding: 5;
 }
