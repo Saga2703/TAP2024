@@ -70,7 +70,6 @@ public class OrdenForm extends Stage {
         arrCampos[0].clear();
         arrCampos[1].clear();
         arrCampos[2].clear();
-        arrCampos[3].clear();
-        arrCampos[4].clear();
+
     }
 }
