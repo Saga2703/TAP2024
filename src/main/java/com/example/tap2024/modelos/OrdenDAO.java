@@ -87,7 +87,8 @@ public class OrdenDAO {
             Statement stmt = Conexion.connection.createStatement();
             ResultSet res= stmt.executeQuery(query);
             while (res.next()){
-                objOrden =new OrdenDAO();
+                objOrden = new OrdenDAO();
+                objOrden.id_orden = res.getInt("id_orden");
                 objOrden.id_empleado =res.getInt("id_empleado");
                 objOrden.fecha=res.getDate("fecha");
                 objOrden.observaciones =res.getString("observaciones");

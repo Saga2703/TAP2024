@@ -35,7 +35,7 @@ public class TaqueriaGUI extends Stage {
     private OrdenDAO ordenes = new OrdenDAO();
     private Detalle_OrdenDAO detalleOrden = new Detalle_OrdenDAO();
     private CategoriaDAO categoria = new CategoriaDAO();
-
+    //
     //Elementos graficos de la aplicacion
     Label tMesas = new Label("Mesa actual: "+mesaActual);
     private Label estadoOrden;
@@ -168,11 +168,8 @@ public class TaqueriaGUI extends Stage {
              }
              //Crear orden
              OrdenDAO temp = new OrdenDAO();
-             if(ordenes.CONSULTAR().size() > 0) {
-                 temp.setId_orden(ordenes.CONSULTAR().get(ordenes.CONSULTAR().size() - 1).getId_orden() + 1);
-             }else{
-                 temp.setId_orden(1);
-             }
+             int ordenActual = ordenes.CONSULTAR().get(ordenes.CONSULTAR().size()-1).getId_orden()+1;
+             System.out.println("La ultima orden es: "+ordenActual);
              temp.setId_empleado(empleadoActual);
              try {
                  DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
@@ -181,15 +178,16 @@ public class TaqueriaGUI extends Stage {
              }catch(Exception e){
                  e.printStackTrace();
              }
-             temp.setObservaciones("Tu mama");
+             temp.setObservaciones("Mesa: "+mesaActual);
              temp.INSERTAR();
              //Crear detalle arraylist
              numPerPro.forEach(
                      (k,v) -> {
                          Detalle_OrdenDAO tempD = new Detalle_OrdenDAO();
-                         tempD.setId_orden(temp.getId_orden());
+                         tempD.setId_orden(ordenActual);
                          tempD.setId_producto(idPerPro.get(k));
                          tempD.setCantidad(v);
+                         tempD.setPrecio(prePerPro.get(k)*v);
                          tempD.INSERTAR();
                      }
              );
@@ -198,6 +196,7 @@ public class TaqueriaGUI extends Stage {
             orden = new ArrayList<>();
             System.out.println(orden.toString());
             listaDeAlimOrden.getChildren().remove(1, listaDeAlimOrden.getChildren().size());
+
         }
     }
 
