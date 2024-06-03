@@ -14,12 +14,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.sql.*;
+
 
 public class TaqueriaGUI extends Stage {
 
-
+    private int empleadoActual = 1;
+    //
     private int mesaActual = 1;//Variable para indicar la mesa en la que se lleva a cabo la orden
     private ArrayList<String> orden = new ArrayList<>();
 
@@ -120,7 +126,7 @@ public class TaqueriaGUI extends Stage {
     }
 
     public void CrearBAlimentos(){
-        estadoOrden = new Label("Orden actual: " + orden.toString());
+        estadoOrden = new Label("Orden actual: ");
         listaDeAlimOrden = new VBox(estadoOrden);
         Button removeAlim = new Button("Remover");
         removeAlim.setOnAction(event -> removerDeOrden());
@@ -138,19 +144,61 @@ public class TaqueriaGUI extends Stage {
     }
 
     public void realizarOrden(){
-        /*PDFTools pdfticket;
-        ArrayList<Detalle_OrdenDAO> temp = new ArrayList<>();
-        boolean coincide = true;
-        for(int i = 0; i < orden.size(); i++){
-            if(!temp.isEmpty()){
-                for(int j = 0; j <temp.size();j++){
-                    if(orden.get(i) == temp.get(j).getId_orden())
+        PDFTools pdfticket;
+        HashMap<String, Integer> numPerPro = new HashMap<>();
+        HashMap<String, Integer> idPerPro = new HashMap<>();
+        HashMap<String, Float> prePerPro = new HashMap<>();
+         if(orden != null && orden.size() >0) {
+             //Crear HashMap con el numero de veces que cada producto se repite en la orden
+            for (int i = 0; i < orden.size(); i++) {
+                if(numPerPro.containsKey(orden.get(i))) {
+                    int temp = numPerPro.get(orden.get(i));
+                    numPerPro.put(orden.get(i), temp + 1);
+                }else{
+                    numPerPro.put(orden.get(i),1);
                 }
-            }else{
-
             }
-        }*/
-        listaDeAlimOrden.getChildren().remove(1,listaDeAlimOrden.getChildren().size()-1);
+            //Conseguir ids y precios de los productos
+             ObservableList<ProductoDAO> alimentos = productos.CONSULTAR();
+             for(int alimento = 0; alimento < alimentos.size(); alimento++){
+                if(numPerPro.containsKey(alimentos.get(alimento).getProducto())){
+                    idPerPro.put(alimentos.get(alimento).getProducto(),alimentos.get(alimento).getId_producto());
+                    prePerPro.put(alimentos.get(alimento).getProducto(),alimentos.get(alimento).getPrecio());
+                }
+             }
+             //Crear orden
+             OrdenDAO temp = new OrdenDAO();
+             if(ordenes.CONSULTAR().size() > 0) {
+                 temp.setId_orden(ordenes.CONSULTAR().get(ordenes.CONSULTAR().size() - 1).getId_orden() + 1);
+             }else{
+                 temp.setId_orden(1);
+             }
+             temp.setId_empleado(empleadoActual);
+             try {
+                 DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+                 Date sqlDate = new Date(df.parse("02-06-2024").getTime());
+                 temp.setFecha(sqlDate);
+             }catch(Exception e){
+                 e.printStackTrace();
+             }
+             temp.setObservaciones("Tu mama");
+             temp.INSERTAR();
+             //Crear detalle arraylist
+             numPerPro.forEach(
+                     (k,v) -> {
+                         Detalle_OrdenDAO tempD = new Detalle_OrdenDAO();
+                         tempD.setId_orden(temp.getId_orden());
+                         tempD.setId_producto(idPerPro.get(k));
+                         tempD.setCantidad(v);
+                         tempD.INSERTAR();
+                     }
+             );
+
+            System.out.println(orden.toString());
+            orden = new ArrayList<>();
+            System.out.println(orden.toString());
+            listaDeAlimOrden.getChildren().remove(1, listaDeAlimOrden.getChildren().size());
+        }
     }
 
     public void CrearMNMesas(){
