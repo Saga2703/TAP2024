@@ -2,6 +2,8 @@ package com.example.tap2024.vistas;
 
 import com.example.tap2024.PDFTools;
 import com.example.tap2024.modelos.*;
+import javafx.beans.InvalidationListener;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,22 +16,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
+import java.util.*;
 import java.sql.*;
 
 
 public class TaqueriaGUI extends Stage {
-
+    //
     private int empleadoActual = 1;
     //
     private int mesaActual = 1;//Variable para indicar la mesa en la que se lleva a cabo la orden
     private ArrayList<String> orden = new ArrayList<>();
-
     //Modelos usados para interactuar con la base de datos
     private EmpleadosDAO empleados = new EmpleadosDAO();
     private ProductoDAO productos = new ProductoDAO();
@@ -38,7 +38,8 @@ public class TaqueriaGUI extends Stage {
     private CategoriaDAO categoria = new CategoriaDAO();
     //
     //Elementos graficos de la aplicacion
-    Label tMesas = new Label("Mesa actual: "+mesaActual);
+    Label tMesas = new Label("Mesa actual: " + mesaActual);
+    Label tEmpleados = new Label("Empleado actual: " + empleadoActual);
     private Label estadoOrden;
     private VBox listaDeAlimOrden;
     private Scene escena;
@@ -50,6 +51,7 @@ public class TaqueriaGUI extends Stage {
     private HBox bAlimentos = new HBox();//Menu para agregar o quitar alimentos
     private VBox mnOrden = new VBox();
     private HBox mnPrincipal = new HBox();
+    private GridPane empleadosGP =  new GridPane();
 
     public TaqueriaGUI(){
         CrearUI();
@@ -63,6 +65,7 @@ public class TaqueriaGUI extends Stage {
     public void CrearUI(){
         mnPrincipal = new HBox();
         CrearMNOrden();
+        CrearMNEmpleados();
         CrearMNMesas();
         escena = new Scene(mnPrincipal);
         escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
@@ -147,7 +150,11 @@ public class TaqueriaGUI extends Stage {
     public void realizarOrden(){
         String fecha = Calendar.getInstance().getTime().toString();
         String historialParaTicket = "";
-        historialParaTicket = historialParaTicket + "\nAtendio " + empleados.CONSULTAR().get(empleadoActual).getEmpleado()+"\n";
+        for(int i = 0; i < empleados.CONSULTAR().size();i++){
+            if(empleados.CONSULTAR().get(i).getId_empleado() == empleadoActual){
+                historialParaTicket = historialParaTicket + "\nAtendio " + empleados.CONSULTAR().get(i).getEmpleado()+"\n";
+            }
+        }
         historialParaTicket = historialParaTicket + "\nEn la mesa " + mesaActual + "\n";
         historialParaTicket = historialParaTicket + "\nEl dia "+fecha+"\n";
         historialParaTicket = historialParaTicket + "\n\nOrden:\n";
@@ -212,7 +219,7 @@ public class TaqueriaGUI extends Stage {
     public void CrearMNMesas(){
         CrearMesas();
         CrearMenuPrivado();
-        mnMesas = new VBox(tMesas, mesas, menuPrivado);
+        mnMesas = new VBox(tMesas, mesas,tEmpleados,empleadosGP, menuPrivado);
         mnPrincipal.getChildren().add(mnMesas);
     }
 
@@ -228,6 +235,22 @@ public class TaqueriaGUI extends Stage {
         }
     }
 
+    public void CrearMNEmpleados(){
+        ObservableList<EmpleadosDAO> empleadosTemp = empleados.CONSULTAR();
+        Button[] bEmpleado = new Button[empleadosTemp.size()];
+        empleadosGP = new GridPane();
+        for(int i = 0; i < empleadosTemp.size(); i++){
+            bEmpleado[i] = new Button(String.valueOf(empleadosTemp.get(i).getId_empleado()));
+            bEmpleado[i].setPrefSize(100,100);
+            final int temp = empleadosTemp.get(i).getId_empleado();
+            bEmpleado[i].setOnAction(event ->{
+                this.empleadoActual = temp;
+                System.out.println("Empleado actual cambio a: " + empleadoActual);
+                tEmpleados.setText("Empleado actual: " + empleadoActual);
+            });
+            empleadosGP.add(bEmpleado[i],i%3,i/3);
+        }
+    }
 
     public void CrearMenuPrivado(){
         Button mnPriv = new Button("Admin Tools");
