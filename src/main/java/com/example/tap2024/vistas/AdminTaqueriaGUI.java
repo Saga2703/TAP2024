@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 
 public class AdminTaqueriaGUI extends Stage {
 
-
+    private static boolean existAlready = false;
     private Scene escena;
     private Button orden = new Button("Mod. orden");
     private Button detOrden = new Button("Mod. det. orden");
@@ -23,13 +23,17 @@ public class AdminTaqueriaGUI extends Stage {
     private boolean validado;
 
     AdminTaqueriaGUI(){
-        CrearUI();
-        escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
-        this.setMinHeight(200);
-        this.setMinWidth(200);
-        this.setTitle("Administracion");
-        this.setScene(escena);
-        this.show();
+        if(existAlready == false) {
+            existAlready = true;
+            CrearUI();
+            escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
+            this.setMinHeight(200);
+            this.setMinWidth(200);
+            this.setTitle("Administracion");
+            this.setScene(escena);
+            this.show();
+            this.setOnCloseRequest(event -> existAlready = false);
+        }
     }
 
     public void CrearUI(){
