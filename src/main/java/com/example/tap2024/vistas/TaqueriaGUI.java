@@ -206,7 +206,12 @@ public class TaqueriaGUI extends Stage {
              }
              //Crear orden
              OrdenDAO temp = new OrdenDAO();
-             int ordenActual = ordenes.CONSULTAR().get(ordenes.CONSULTAR().size()-1).getId_orden()+1;
+             int ordenActual;
+             if(ordenes.CONSULTAR().size() > 0) {
+                 ordenActual = ordenes.CONSULTAR().get(ordenes.CONSULTAR().size() - 1).getId_orden() + 1;
+             }else{
+                 ordenActual = 1;
+             }
              System.out.println("La ultima orden es: "+ordenActual);
              temp.setId_empleado(empleadoActual);
              try {
