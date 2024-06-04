@@ -23,6 +23,7 @@ public class DetalleOrdenForm extends Stage {
         tbvDetalle=tbvDet;
         this.objDetalle =(objDetalle==null)? new Detalle_OrdenDAO():objDetalle;
         CrearUI();
+        escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
         this.setTitle("Insertar Producto");
         this.setScene(escena);
         this.show();

@@ -24,6 +24,7 @@ public class EmpleadosForm extends Stage {
         tbvEmpleados=tbvEmp;
         this.objEmp =(objEmp==null)? new EmpleadosDAO():objEmp;
         CrearUI();
+        escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
         this.setTitle("Insertar Usuario");
         this.setScene(escena);
         this.show();

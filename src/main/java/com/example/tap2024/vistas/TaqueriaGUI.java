@@ -231,7 +231,7 @@ public class TaqueriaGUI extends Stage {
 
     public void CrearMenuPrivado(){
         Button mnPriv = new Button("Admin Tools");
-        mnPriv.setOnAction(event -> new AdminTaqueriaGUI());
+        mnPriv.setOnAction(event -> new VerificacionGUI());
         menuPrivado = new HBox(mnPriv);
     }
 }

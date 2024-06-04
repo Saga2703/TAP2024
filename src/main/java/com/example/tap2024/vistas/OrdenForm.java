@@ -24,6 +24,7 @@ public class OrdenForm extends Stage {
         tbvOrden=tbvOrd;
         this.objOrden =(objOrden==null)? new OrdenDAO():objOrden;
         CrearUI();
+        escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
         this.setTitle("Insertar Producto");
         this.setScene(escena);
         this.show();

@@ -22,6 +22,7 @@ public class ProductoForm extends Stage {
         tbvProducto=tbvPro;
         this.objPro =(objPro==null)? new ProductoDAO():objPro;
         CrearUI();
+        escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
         this.setTitle("Insertar Producto");
         this.setScene(escena);
         this.show();
