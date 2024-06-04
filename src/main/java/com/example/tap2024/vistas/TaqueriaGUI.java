@@ -144,7 +144,7 @@ public class TaqueriaGUI extends Stage {
     }
 
     public void realizarOrden(){
-        PDFTools pdfticket;
+        String historialParaTicket = "";
         HashMap<String, Integer> numPerPro = new HashMap<>();
         HashMap<String, Integer> idPerPro = new HashMap<>();
         HashMap<String, Float> prePerPro = new HashMap<>();
@@ -196,7 +196,7 @@ public class TaqueriaGUI extends Stage {
             orden = new ArrayList<>();
             System.out.println(orden.toString());
             listaDeAlimOrden.getChildren().remove(1, listaDeAlimOrden.getChildren().size());
-
+            PDFTools.generarTicketDeCompra(historialParaTicket);
         }
     }
 

@@ -7,7 +7,7 @@ import com.itextpdf.layout.element.Paragraph;
 
 public class PDFTools {
 
-    public void generarTicketDeCompra(String datos){
+    public static void generarTicketDeCompra(String datos){
         try {
             //pdfwriter
             String destino = "./ticket.pdf";
