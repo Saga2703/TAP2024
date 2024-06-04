@@ -24,6 +24,8 @@ import java.sql.*;
 
 
 public class TaqueriaGUI extends Stage {
+
+
     //
     private int empleadoActual = 1;
     //
@@ -56,7 +58,7 @@ public class TaqueriaGUI extends Stage {
         CrearUI();
         this.setTitle("Taqueria");
         this.setScene(escena);
-        this.setMinWidth(900);
+        this.setMinWidth(1000);
         this.setMinHeight(720);
         this.show();
     }
@@ -70,8 +72,8 @@ public class TaqueriaGUI extends Stage {
         escena = new Scene(mnPrincipal);
         escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
 
-        BackgroundImage bg= new BackgroundImage(new Image(getClass().getResource("/imagenes/letritas.gif").toString(),900,720,false,false),
-        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundImage bg= new BackgroundImage(new Image(getClass().getResource("/imagenes/letritas.gif").toString(),1000,720,false,false),
+        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
         BackgroundSize.DEFAULT);
         Background bgFR = new Background(bg);
         mnOrden.setBackground(bgFR);
@@ -83,11 +85,15 @@ public class TaqueriaGUI extends Stage {
         mnAlimentos.setPadding(new Insets(10));
         mnAlimentos.setHgap(10);
         mnAlimentos.setVgap(10);
+        tMesas.setPadding(new Insets(5));
+        tEmpleados.setPadding(new Insets(5));
+        mnOrden.setPrefWidth(720);
     }
 
     //Menu para las ordenes
     public void CrearMNOrden(){
         Label tOrden = new Label("Orden");
+        tOrden.setPadding(new Insets(5));
         CrearMNTiposAlimentos();
         CrearBAlimentos();
         mnOrden = new VBox(tOrden,mnTiposAlimentos,mnAlimentos,bAlimentos);
@@ -104,10 +110,10 @@ public class TaqueriaGUI extends Stage {
         for(int tipo = 0; tipo < tipos.size(); tipo++){
             imgTipo = ObtenerImg.obtImg(tipos.get(tipo).getCategoria());
             imgTipoView = new ImageView(imgTipo);
-            imgTipoView.setFitHeight(200);
-            imgTipoView.setFitWidth(200);
+            imgTipoView.setFitHeight(120);
+            imgTipoView.setFitWidth(120);
             bTipo = new Button(tipos.get(tipo).getCategoria());
-            bTipo.setPrefSize(200,50);
+            bTipo.setPrefSize(120,50);
             int tempS = tipos.get(tipo).getId_categoria();
             bTipo.setOnAction(event -> {CrearMNAlimentos(tempS);});
             temp = new VBox(imgTipoView,bTipo);
@@ -145,6 +151,7 @@ public class TaqueriaGUI extends Stage {
 
     public void CrearBAlimentos(){
         estadoOrden = new Label("Orden actual: ");
+        estadoOrden.setPadding(new Insets(5));
         listaDeAlimOrden = new VBox(estadoOrden);
         Button removeAlim = new Button("Remover");
         removeAlim.setOnAction(event -> removerDeOrden());

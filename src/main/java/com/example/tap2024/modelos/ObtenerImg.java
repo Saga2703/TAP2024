@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 public class ObtenerImg {
 
     public static Image obtImg(String nomImg){
+        //
         System.out.println(nomImg);
         Image temp = null;
         try {
