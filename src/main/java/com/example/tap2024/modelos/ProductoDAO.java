@@ -13,6 +13,7 @@ public class ProductoDAO {
     private float costo;
     private int id_categoria;
 
+
     public int getId_producto() {
         return id_producto;
     }

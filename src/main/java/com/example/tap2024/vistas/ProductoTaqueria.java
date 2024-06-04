@@ -86,7 +86,17 @@ public class ProductoTaqueria extends Stage {
                 }
         );
 
-        tbvProducto.getColumns().addAll(tbcProducto,tbcPrecio,tbcCosto,tbcIdCat,tbcEditar,tbcEliminar);
+        TableColumn<ProductoDAO,String> tbcImagen = new TableColumn<ProductoDAO,String >("Imagen");
+        tbcEliminar.setCellFactory(
+                new Callback<TableColumn<ProductoDAO, String>, TableCell<ProductoDAO, String>>() {
+                    @Override
+                    public TableCell<ProductoDAO, String> call(TableColumn<ProductoDAO, String> productoDAOStringTableColumn) {
+                        return new ButtonCellP(3);
+                    }
+                }
+        );
+
+        tbvProducto.getColumns().addAll(tbcProducto,tbcPrecio,tbcCosto,tbcIdCat,tbcImagen,tbcEditar,tbcEliminar);
         tbvProducto.setItems(objPro.CONSULTAR());
     }
 

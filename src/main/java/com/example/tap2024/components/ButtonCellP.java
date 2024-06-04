@@ -15,6 +15,7 @@ public class ButtonCellP extends TableCell<ProductoDAO,String> {
         String txtButton =(opc==1)?"Editar":"Eliminar";
         btnCelda = new Button(txtButton);
         btnCelda.setOnAction(event -> AccionBoton(opc));
+
     }
 
     private void AccionBoton(int opc) {

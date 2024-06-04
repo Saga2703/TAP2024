@@ -10,7 +10,7 @@ public class ObtenerImg {
         System.out.println(nomImg);
         Image temp = null;
         try {
-            FileInputStream inputstream = new FileInputStream("C:/Users/jahmc/IdeaProjects/TAP2024/src/main/resources/imagenes/sheik.jpg");
+            FileInputStream inputstream = new FileInputStream("../../IdeaProjects/TAP2024/src/main/resources/imagenes/sheik.jpg");
             Image image = new Image(inputstream);
             temp = image;
         }catch(Exception e){
