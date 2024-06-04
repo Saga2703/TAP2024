@@ -12,6 +12,7 @@ public class ProductoDAO {
     private float precio;
     private float costo;
     private int id_categoria;
+    private byte[] imagen;
 
 
     public int getId_producto() {
@@ -52,6 +53,10 @@ public class ProductoDAO {
     public void setId_categoria(int id_categoria) {
         this.id_categoria = id_categoria;
     }
+
+    public byte[] getImagen() { return imagen; }
+    public void setImagen(byte[] imagen) { this.imagen = imagen; }
+
 
     public void INSERTAR(){
         String query = "insert into producto(producto,precio,costo,id_categoria)"+
@@ -109,4 +114,6 @@ public class ProductoDAO {
         }
         return listaPro;
     }
+
+
 }

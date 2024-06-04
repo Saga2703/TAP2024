@@ -17,7 +17,7 @@ public class CategoriaForm extends Stage {
     private Scene escena;
     private VBox vbxPrincipal;
     private TextField[] arrCampos= new TextField[1];
-    private Button btnGuardar;
+    private Button btnGuardar,btnImagen;
     TableView<CategoriaDAO> tbvCategoria;
     public CategoriaForm(TableView<CategoriaDAO> tbvCat, CategoriaDAO objCat) {
         tbvCategoria=tbvCat;

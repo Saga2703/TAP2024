@@ -66,7 +66,8 @@ public class ProductoTaqueria extends Stage {
         TableColumn<ProductoDAO,Float> tbcIdCat = new TableColumn<>("Id_categoria");
         tbcIdCat.setCellValueFactory(new PropertyValueFactory<>("id_categoria"));
 
-
+        TableColumn<ProductoDAO,Float> tbcImagen = new TableColumn<>("Imagen");
+        tbcIdCat.setCellValueFactory(new PropertyValueFactory<>("imagen"));
 
         TableColumn<ProductoDAO,String> tbcEditar = new TableColumn<ProductoDAO,String >("EDITAR");
         tbcEditar.setCellFactory(
@@ -87,15 +88,7 @@ public class ProductoTaqueria extends Stage {
                 }
         );
 
-        TableColumn<ProductoDAO,String> tbcImagen = new TableColumn<ProductoDAO,String >("Imagen");
-        tbcEliminar.setCellFactory(
-                new Callback<TableColumn<ProductoDAO, String>, TableCell<ProductoDAO, String>>() {
-                    @Override
-                    public TableCell<ProductoDAO, String> call(TableColumn<ProductoDAO, String> productoDAOStringTableColumn) {
-                        return new ButtonCellP(3);
-                    }
-                }
-        );
+
 
         tbvProducto.getColumns().addAll(tbcProducto,tbcPrecio,tbcCosto,tbcIdCat,tbcImagen,tbcEditar,tbcEliminar);
         tbvProducto.setItems(objPro.CONSULTAR());

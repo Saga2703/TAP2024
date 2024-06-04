@@ -8,7 +8,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class ProductoForm extends Stage {
     private ProductoDAO objPro;
@@ -17,6 +22,8 @@ public class ProductoForm extends Stage {
     private VBox vbxPrincipal;
     private TextField[] arrCampos= new TextField[4];
     private Button btnGuardar;
+    private Button btnCargarImagen;
+
     TableView<ProductoDAO> tbvProducto;
     public ProductoForm(TableView<ProductoDAO> tbvPro, ProductoDAO objPro) {
         tbvProducto=tbvPro;
@@ -41,7 +48,9 @@ public class ProductoForm extends Stage {
         LlenarForm();
         btnGuardar=new Button("Guardar");
         btnGuardar.setOnAction(event -> GuardarProducto());
-        vbxPrincipal.getChildren().add(btnGuardar);
+        btnCargarImagen = new Button("Cargar Imagen");
+        btnCargarImagen.setOnAction(event -> cargarImagen());
+        vbxPrincipal.getChildren().addAll(btnGuardar,btnCargarImagen);
         escena=new Scene(vbxPrincipal,300,250);
     }
 
@@ -70,5 +79,20 @@ public class ProductoForm extends Stage {
         arrCampos[1].clear();
         arrCampos[2].clear();
         arrCampos[3].clear();
+    }
+    private void cargarImagen() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Seleccionar Imagen");
+        File file = fileChooser.showOpenDialog(this);
+
+        if (file != null) {
+            try (FileInputStream fis = new FileInputStream(file)) {
+                // Lógica para cargar la imagen en la base de datos
+                byte[] imagen = fis.readAllBytes();
+                objPro.setImagen(imagen);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

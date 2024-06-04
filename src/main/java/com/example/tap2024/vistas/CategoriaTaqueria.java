@@ -61,7 +61,8 @@ public class CategoriaTaqueria extends Stage {
         TableColumn<CategoriaDAO,String> tbcCategoria = new TableColumn<>("Categoria");
         tbcCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
 
-
+        //TableColumn<CategoriaDAO,String> tbcImagen = new TableColumn<>("Imagen");
+        //tbcCategoria.setCellValueFactory(new PropertyValueFactory<>("imagen"));
 
         TableColumn<CategoriaDAO,String> tbcEditar = new TableColumn<CategoriaDAO,String >("EDITAR");
         tbcEditar.setCellFactory(
@@ -81,16 +82,8 @@ public class CategoriaTaqueria extends Stage {
                     }
                 }
         );
-        TableColumn<CategoriaDAO,String> tbcImagen = new TableColumn<CategoriaDAO,String >("Imagen");
-        tbcEliminar.setCellFactory(
-                new Callback<TableColumn<CategoriaDAO, String>, TableCell<CategoriaDAO, String>>() {
-                    @Override
-                    public TableCell<CategoriaDAO, String> call(TableColumn<CategoriaDAO, String> categoriaDAOStringTableColumn) {
-                        return new ButtonCellC(3);
-                    }
-                }
-        );
-        tbvCategoria.getColumns().addAll(tbcCategoria,tbcImagen,tbcEditar,tbcEliminar);
+
+        tbvCategoria.getColumns().addAll(tbcidCategoria,tbcCategoria,tbcEditar,tbcEliminar);
         tbvCategoria.setItems(objCat.CONSULTAR());
     }
 
