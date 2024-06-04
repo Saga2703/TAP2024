@@ -5,15 +5,14 @@ import com.example.tap2024.modelos.*;
 import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.sql.Date;
@@ -57,8 +56,8 @@ public class TaqueriaGUI extends Stage {
         CrearUI();
         this.setTitle("Taqueria");
         this.setScene(escena);
-        this.setMinWidth(720);
-        this.setMinHeight(480);
+        this.setMinWidth(900);
+        this.setMinHeight(720);
         this.show();
     }
 
@@ -67,8 +66,23 @@ public class TaqueriaGUI extends Stage {
         CrearMNOrden();
         CrearMNEmpleados();
         CrearMNMesas();
+        Apariencia();
         escena = new Scene(mnPrincipal);
         escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
+
+        BackgroundImage bg= new BackgroundImage(new Image(getClass().getResource("/imagenes/letritas.gif").toString(),900,720,false,false),
+        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundSize.DEFAULT);
+        Background bgFR = new Background(bg);
+        mnOrden.setBackground(bgFR);
+    }
+
+    public void Apariencia(){
+        mnTiposAlimentos.setPadding(new Insets(10));
+        mnTiposAlimentos.setSpacing(5);
+        mnAlimentos.setPadding(new Insets(10));
+        mnAlimentos.setHgap(10);
+        mnAlimentos.setVgap(10);
     }
 
     //Menu para las ordenes
