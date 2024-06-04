@@ -7,8 +7,9 @@ import com.itextpdf.layout.element.Paragraph;
 
 public class PDFTools {
 
-    public void generarTicketDeCompra(String datos){
+    public static void generarTicketDeCompra(String datos){
         try {
+            String cabezeraDatos = String.format("Taqueria \"El Judio Antisemita\"\n\nRecibo de compra\n\n","","");
             //pdfwriter
             String destino = "./ticket.pdf";
             PdfWriter writer = new PdfWriter(destino);
@@ -19,7 +20,7 @@ public class PDFTools {
             // Creating a Document
             Document document = new Document(pdfDoc);
             //Creating the content
-            Paragraph content = new Paragraph(datos);
+            Paragraph content = new Paragraph(cabezeraDatos + datos);
             document.add(content);
             // Closing the document
             document.close();

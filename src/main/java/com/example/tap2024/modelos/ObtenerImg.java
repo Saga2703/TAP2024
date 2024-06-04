@@ -20,4 +20,4 @@ public class ObtenerImg {
     }
 }
 //src/main/java/com/example/tap2024/modelos/ObtenerImg.java
-//"C:\Users\jahmc\IdeaProjects\TAP2024-emmanuel"
+//"C:\Users\jahmc\IdeaProjects\TAP2024-emmanuel" C:/Users/jahmc

@@ -18,6 +18,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.sql.*;
 
@@ -144,7 +145,12 @@ public class TaqueriaGUI extends Stage {
     }
 
     public void realizarOrden(){
-        PDFTools pdfticket;
+        String fecha = Calendar.getInstance().getTime().toString();
+        String historialParaTicket = "";
+        historialParaTicket = historialParaTicket + "\nAtendio " + empleados.CONSULTAR().get(empleadoActual).getEmpleado()+"\n";
+        historialParaTicket = historialParaTicket + "\nEn la mesa " + mesaActual + "\n";
+        historialParaTicket = historialParaTicket + "\nEl dia "+fecha+"\n";
+        historialParaTicket = historialParaTicket + "\n\nOrden:\n";
         HashMap<String, Integer> numPerPro = new HashMap<>();
         HashMap<String, Integer> idPerPro = new HashMap<>();
         HashMap<String, Float> prePerPro = new HashMap<>();
@@ -162,6 +168,10 @@ public class TaqueriaGUI extends Stage {
              ObservableList<ProductoDAO> alimentos = productos.CONSULTAR();
              for(int alimento = 0; alimento < alimentos.size(); alimento++){
                 if(numPerPro.containsKey(alimentos.get(alimento).getProducto())){
+                    String tempProducto = alimentos.get(alimento).getProducto();
+                    historialParaTicket = historialParaTicket + "\n" + tempProducto + "  ";
+                    String tempPrice = String.valueOf(alimentos.get(alimento).getPrecio());
+                    historialParaTicket = historialParaTicket + tempPrice + "\n";
                     idPerPro.put(alimentos.get(alimento).getProducto(),alimentos.get(alimento).getId_producto());
                     prePerPro.put(alimentos.get(alimento).getProducto(),alimentos.get(alimento).getPrecio());
                 }
@@ -178,9 +188,9 @@ public class TaqueriaGUI extends Stage {
              }catch(Exception e){
                  e.printStackTrace();
              }
-             temp.setObservaciones("Mesa: "+mesaActual);
+             temp.setObservaciones("Mesa: " + mesaActual);
              temp.INSERTAR();
-             //Crear detalle arraylist
+             //Crear detalle_orden
              numPerPro.forEach(
                      (k,v) -> {
                          Detalle_OrdenDAO tempD = new Detalle_OrdenDAO();
@@ -190,13 +200,12 @@ public class TaqueriaGUI extends Stage {
                          tempD.setPrecio(prePerPro.get(k)*v);
                          tempD.INSERTAR();
                      }
-             );
-
+            );
             System.out.println(orden.toString());
             orden = new ArrayList<>();
             System.out.println(orden.toString());
             listaDeAlimOrden.getChildren().remove(1, listaDeAlimOrden.getChildren().size());
-
+            PDFTools.generarTicketDeCompra(historialParaTicket);
         }
     }
 
