@@ -23,6 +23,7 @@ public class CategoriaForm extends Stage {
         tbvCategoria=tbvCat;
         this.objCat =(objCat==null)? new CategoriaDAO():objCat;
         CrearUI();
+        escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
         this.setTitle("Insertar Usuario");
         this.setScene(escena);
         this.show();

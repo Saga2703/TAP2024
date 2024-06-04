@@ -35,12 +35,6 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
         stage.setMaximized(false);
-/*
-        new Hilo("Juno").start();
-        new Hilo("Joshua").start();
-        new Hilo("Saga").start();
-        new Hilo("Alma").start();
-        new Hilo("Rafa").start();*/
         Conexion.crearConexion();
     }
 

@@ -23,6 +23,7 @@ public class ProductoTaqueria extends Stage {
     private TableView<ProductoDAO> tbvProducto;
     public ProductoTaqueria(){
         CrearUI();
+        escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
         this.setTitle("Taqueria Los Inges");
         this.setScene(escena);
         this.show();
