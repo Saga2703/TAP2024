@@ -16,6 +16,7 @@ import org.kordamp.bootstrapfx.scene.layout.Panel;
 
 public class OrdenTaqueria extends Stage {
 
+    private static boolean existAlready = false;
     private Panel pnlPrincipal;
     private BorderPane bpnPrincipal;
     private ToolBar tlbMenu;
@@ -23,11 +24,14 @@ public class OrdenTaqueria extends Stage {
     private Button btnAgregarOrden;
     private TableView<OrdenDAO> tbvOrden;
     public OrdenTaqueria(){
-        CrearUI();
-        escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
-        this.setTitle("Taqueria Los Inges");
-        this.setScene(escena);
-        this.show();
+        if (existAlready == false) {
+            existAlready = true;
+            CrearUI();
+            escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
+            this.setTitle("Taqueria Los Inges");
+            this.setScene(escena);
+            this.show();
+        }
 
     }
     private void CrearUI(){

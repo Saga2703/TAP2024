@@ -15,19 +15,24 @@ import org.kordamp.bootstrapfx.scene.layout.Panel;
 
 public class ProductoTaqueria extends Stage {
 
+    private static boolean existAlready = false;
     private Panel pnlPrincipal;
     private BorderPane bpnPrincipal;
     private ToolBar tlbMenu;
     private Scene escena;
     private Button btnAgregarProducto;
     private TableView<ProductoDAO> tbvProducto;
-    public ProductoTaqueria(){
-        CrearUI();
-        escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
-        this.setTitle("Taqueria Los Inges");
-        this.setScene(escena);
-        this.show();
 
+    public ProductoTaqueria(){
+        if (existAlready == false) {
+            existAlready = true;
+            CrearUI();
+            escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
+            this.setTitle("Taqueria Los Inges");
+            this.setScene(escena);
+            this.show();
+            this.setOnCloseRequest(event -> existAlready = false);
+        }
     }
     private void CrearUI(){
         ImageView imvEmp =new ImageView(getClass().getResource("/imagenes/employee.png").toString());

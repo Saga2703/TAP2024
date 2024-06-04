@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 public class VerificacionGUI extends Stage {
 
+    private static boolean existAlready = false;
     private VBox mainLayout;
     private Label pass = new Label("Type the password");
     private TextField password =  new TextField("");
@@ -16,12 +17,16 @@ public class VerificacionGUI extends Stage {
     private Scene escena;
 
     public VerificacionGUI(){
-        CrearUI();
-        this.setTitle("Taqueria");
-        this.setScene(escena);
-        this.setMinWidth(720);
-        this.setMinHeight(480);
-        this.show();
+        if (existAlready == false) {
+            existAlready = true;
+            CrearUI();
+            this.setTitle("Taqueria");
+            this.setScene(escena);
+            this.setMinWidth(720);
+            this.setMinHeight(480);
+            this.show();
+            this.setOnCloseRequest(event -> existAlready = false);
+        }
     }
 
     public void CrearUI(){

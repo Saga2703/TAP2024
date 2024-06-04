@@ -14,19 +14,25 @@ import org.kordamp.bootstrapfx.BootstrapFX;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
 
 public class Detalle_OrdenTaqueria extends Stage {
+
+    private static boolean existAlready = false;
     private Panel pnlPrincipal;
     private BorderPane bpnPrincipal;
     private ToolBar tlbMenu;
     private Scene escena;
     private Button btnAgregarDetalleOrden;
     private TableView<Detalle_OrdenDAO> tbvDetalleOrden;
-    public Detalle_OrdenTaqueria(){
-        CrearUI();
-        escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
-        this.setTitle("Taqueria Los Inges");
-        this.setScene(escena);
-        this.show();
 
+    public Detalle_OrdenTaqueria(){
+        if (existAlready == false) {
+            existAlready = true;
+            CrearUI();
+            escena.getStylesheets().add(getClass().getResource("/Estilos/taqueria.css").toString());
+            this.setTitle("Taqueria Los Inges");
+            this.setScene(escena);
+            this.show();
+            this.setOnCloseRequest(event -> existAlready = false);
+        }
     }
 
     private void CrearUI(){
