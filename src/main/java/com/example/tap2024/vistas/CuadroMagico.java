@@ -18,11 +18,11 @@ import java.io.RandomAccessFile;
 public class CuadroMagico extends Stage {
     private Scene escena;
     private VBox vContenedor1;
-    private HBox hContenedor,hContenedor2;
+    private HBox hContenedor, hContenedor2;
     private BorderPane bdpAllM;
     private Label lblT, lbl1;
     private TextField txtNum;
-    private Button btnNum,btnRegresar;
+    private Button btnNum, btnRegresar;
 
     public CuadroMagico() {
         CrearUI();
@@ -58,65 +58,29 @@ public class CuadroMagico extends Stage {
                 return;
             }
 
-            File archivo = new File("cuadro_magico.dat");
-            RandomAccessFile randomAccessFile = new RandomAccessFile(archivo, "rw");
-
-            // Lógica para calcular el cuadro mágico sin arreglos
-            int[][] cuadroMagico = new int[orden][orden];
-            int fila = 0;
-            int columna = orden / 2;
-
-            for (int i = 1; i <= orden * orden; i++) {
-                cuadroMagico[fila][columna] = i;
-                fila = (fila - 1 + orden) % orden;
-                columna = (columna + 1) % orden;
-            }
-
-            // Escribir el cuadro mágico en el archivo de acceso aleatorio
-            for (int i = 0; i < orden; i++) {
-                for (int j = 0; j < orden; j++) {
-                    randomAccessFile.writeInt(cuadroMagico[i][j]);
-                }
-            }
-
-            // Cerrar el archivo
-            randomAccessFile.close();
+            CuadroMagicoLogica cuadroMagicoLogica = new CuadroMagicoLogica(orden);
+            cuadroMagicoLogica.generateMagicSquare();
 
             // Mostrar cuadro mágico en una nueva ventana usando GridPane
-            mostrarCuadroMagico(orden);
+            mostrarCuadroMagico(orden, cuadroMagicoLogica);
 
-        } catch (IOException | NumberFormatException e) {
+        } catch (NumberFormatException e) {
             e.printStackTrace();
         }
     }
 
-    private void mostrarCuadroMagico(int orden) {
+    private void mostrarCuadroMagico(int orden, CuadroMagicoLogica cuadroMagicoLogica) {
         Stage nuevaVentana = new Stage();
         GridPane gdpCuadro = new GridPane();
 
-        // Leer el cuadro mágico desde el archivo
-        try {
-            File archivo = new File("cuadro_magico.dat");
-            RandomAccessFile randomAccessFile = new RandomAccessFile(archivo, "r");
+        cuadroMagicoLogica.showMagicSquareGUI(gdpCuadro);
+        btnRegresar = new Button("Regresar");
+        btnRegresar.setOnAction(event -> nuevaVentana.close());
 
-            for (int i = 0; i < orden; i++) {
-                for (int j = 0; j < orden; j++) {
-                    int numero = randomAccessFile.readInt();
-                    Label label = new Label(String.valueOf(numero));
-                    gdpCuadro.add(label, j, i);
-                }
-            }
-
-            randomAccessFile.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        btnRegresar =new Button("Regresar");
-        hContenedor2 = new HBox(gdpCuadro,btnRegresar);
+        hContenedor2 = new HBox(gdpCuadro, btnRegresar);
         hContenedor2.setSpacing(15);
         hContenedor2.setAlignment(Pos.CENTER);
-        Scene nuevaEscena = new Scene(hContenedor2, 400, 400);
+        Scene nuevaEscena = new Scene(hContenedor2, 500, 400);
         nuevaEscena.getStylesheets()
                 .add(getClass().getResource("/estilos/cuadroMagico.css").toString());
         nuevaVentana.setScene(nuevaEscena);
@@ -124,6 +88,94 @@ public class CuadroMagico extends Stage {
         nuevaVentana.setTitle("Cuadro Mágico Resultante");
         nuevaVentana.show();
     }
+
+
 }
+
+ class CuadroMagicoLogica {
+
+    RandomAccessFile cuadroMagico;
+    int n;
+
+    public CuadroMagicoLogica(int n){
+        try {
+            cuadroMagico = new RandomAccessFile("cuadro.dat", "rw");
+            for(int i = 0; i < Math.pow(n, 2); i++){
+                cuadroMagico.seek(i * 4);
+                cuadroMagico.writeInt(-1);
+            }
+            this.n = n;
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void generateMagicSquare(){
+        boolean normalFlag = false;
+        int i = 0;
+        int j = n / 2;
+        man(i, j, 1);
+        for(int k = 2; k <= Math.pow(n, 2); k++){
+            normalFlag = false;
+            if(i == 0 && j == (n - 1)){
+                i++;
+            }else if(i == 0){
+                i = n - 1;
+                j++;
+            }else if (j == (n - 1)){
+                i--;
+                j = 0;
+            }else{
+                i--;
+                j++;
+                normalFlag = true;
+            }
+            if(isNotEmpty(i, j)){
+                if(normalFlag){
+                    i = i + 2;
+                    j--;
+                }else {
+                    i++;
+                }
+            }
+            man(i, j, k);
+        }
+    }
+
+    public boolean isNotEmpty(int i, int j){
+        boolean result = true;
+        try {
+            cuadroMagico.seek(0);
+            cuadroMagico.seek(((i * n) + j) * 4);
+            if(cuadroMagico.readInt() < 0) result = false;
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public void man(int i, int j, int data){
+        try {
+            cuadroMagico.seek(0);
+            cuadroMagico.seek(((i * n) + j) * 4);
+            cuadroMagico.writeInt(data);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void showMagicSquareGUI(GridPane square){
+        try {
+            for (int i = 0; i < Math.pow(n, 2); i++) {
+                cuadroMagico.seek(i * 4);
+                square.add(new Button(String.format("%5s", String.valueOf(cuadroMagico.readInt()))), i % n, i / n);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+}
+
 
 

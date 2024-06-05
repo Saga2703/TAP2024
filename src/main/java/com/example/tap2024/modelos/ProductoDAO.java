@@ -107,6 +107,7 @@ public class ProductoDAO {
                 objPro.costo =res.getFloat("costo");
                 objPro.id_categoria= res.getInt("id_categoria");
 
+
                 listaPro.add(objPro);
             }
         }catch (Exception e){
