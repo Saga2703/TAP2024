@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
     private MenuBar mnbPrincipal;
     private Menu menParcial1, menParcial2, menSalir;
     private MenuItem mitCalculadora, mitSalir, mitMemorama,mitCuadroMagico, mitEmpleado,mitPista;
-    private MenuItem  mitTaqueria;
+    private MenuItem  mitTaqueria,mitSimulacion;
 
     private BorderPane bdpPanel;
     @Override
@@ -63,8 +63,10 @@ public class HelloApplication extends Application {
 
         mitPista =new MenuItem("Manejo de Hilos");
         mitPista.setOnAction(event -> new Pista());
+        mitSimulacion= new MenuItem("Simulacion Impresion");
+        mitSimulacion.setOnAction(event -> new Simulacion());
         menParcial2 = new Menu("Segundo Parcial");
-        menParcial2.getItems().addAll(mitPista,mitTaqueria);
+        menParcial2.getItems().addAll(mitPista,mitSimulacion,mitTaqueria);
 
         /* Menu salir */
         mitSalir = new MenuItem("Salir");
